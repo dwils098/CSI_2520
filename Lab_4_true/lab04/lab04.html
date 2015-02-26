@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<TITLE>CSI 2120, Winter 2015, Lab 4</TITLE>
+</HEAD>
+<BODY >
+<h1> CSI 2120</h1>
+<h2> Lab 4: Prolog</h2>
+
+<h3>Exercise 1. List Processing</h3>
+
+
+<p>
+Write a Prolog predicate <tt>secondLast</tt> that finds the second last element of a list.
+</p>
+
+<pre><code>
+?- secondLast(X,[7,abc,foo,x,9,12]).
+X = 9
+
+</code></pre>
+
+
+<h3>Exercise 2. Maximum and Minimum Elements</h3>
+
+Write a Prolog program that finds the maximum and minimum element in a list of numbers. The program should work as follows:
+
+<pre><code>
+?- maxmin([3,1,5,2,7,3],Max,Min).
+Max = 7
+Min = 1
+
+?- maxmin([2],Max,Min).
+Max = 2
+Min = 2
+
+</code></pre>
+
+
+<h3>Exercise 3 and Quiz: Maximum and Minimum Elements</h3>
+
+<em>Please hand-in the answer to this question on Virtual Campus by 5:00pm today!</em>
+
+
+Complete the following Prolog program to reverse the order of the elements in the list but also remove every second element.
+
+The program should work as follows:
+
+<pre><code>
+?- reverseDrop([3,1,5,2,7,3],L).
+L = [ 7, 5, 3 ].
+
+?- reverseDrop(['world','a','hello'],L).
+L = [ 'hello', 'world' ].
+
+</code></pre>
+
+
+Starter code:
+
+<pre><code>
+
+reverseDrop(L,R) :- reverseDrop(L,1,[],R), !.
+
+reverseDrop([HL|TL],N,I,R) :- 
+          N = 1,
+          reverseDrop(TL,0,[HL|I],R).
+
+</code></pre>
+
+
+
+
+</BODY>
+</HTML>

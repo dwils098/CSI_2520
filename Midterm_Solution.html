@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>CSI-2520 - Midterm Solution</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="CSI-2520 - Midterm Solution"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2015-02-26T10:39-0500"/>
+<meta name="author" content="Dany Wilson"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">CSI-2520 - Midterm Solution</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Train Ride</a></li>
+<li><a href="#sec-2">2 Jane, apps, and graphics&hellip;</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Why is the first predicate not valid?</a></li>
+<li><a href="#sec-2-2">2.2 The solution&hellip;</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Tree Traversal</a>
+<ul>
+<li><a href="#sec-3-1">3.1 The result of this query is:</a></li>
+<li><a href="#sec-3-2">3.2 The result of this query is:</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 Game Dev</a>
+<ul>
+<li><a href="#sec-4-1">4.1 design('Charlotte', D, 'Secret')</a></li>
+<li><a href="#sec-4-2">4.2 Only Sophia, cut this tree!</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1 Some students solution</a></li>
+<li><a href="#sec-4-2-2">4.2.2 Solution</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 Summation, Lists, etc&hellip;</a></li>
+<li><a href="#sec-6">6 Order for two</a></li>
+<li><a href="#sec-7">7 Permutations</a></li>
+<li><a href="#sec-8">8 SUDOKU</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Train Ride</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+<pre class="example">
+train_ride('Vancouver', 'Quesnel')
+
+[trace] 3 ?- train_ride('Vancouver','Quesnel').
+   Call: (6) train_ride('Vancouver', 'Quesnel') ? creep
+   Call: (7) write('Vancouver') ? creep
+Vancouver
+   Exit: (7) write('Vancouver') ? creep
+   Call: (7) write(' ') ? creep
+
+   Exit: (7) write(' ') ? creep
+   Call: (7) train('Vancouver', 'Quesnel', ['Vancouver']) ? creep
+   Call: (8) ride('Vancouver', 'Quesnel') ? creep
+   Call: (9) rail('Vancouver', 'Quesnel') ? creep
+   Fail: (9) rail('Vancouver', 'Quesnel') ? creep
+   Redo: (8) ride('Vancouver', 'Quesnel') ? creep
+   Call: (9) rail('Quesnel', 'Vancouver') ? creep
+   Fail: (9) rail('Quesnel', 'Vancouver') ? creep
+   Fail: (8) ride('Vancouver', 'Quesnel') ? creep
+   Redo: (7) train('Vancouver', 'Quesnel', ['Vancouver']) ? creep
+   Call: (8) ride('Vancouver', _G2506) ? creep
+   Call: (9) rail('Vancouver', _G2506) ? creep
+   Exit: (9) rail('Vancouver', 'Kamloops') ? creep
+   Exit: (8) ride('Vancouver', 'Kamloops') ? creep
+   Call: (8) lists:member('Kamloops', ['Vancouver']) ? creep
+   Fail: (8) lists:member('Kamloops', ['Vancouver']) ? creep
+   Redo: (7) train('Vancouver', 'Quesnel', ['Vancouver']) ? creep
+   Call: (8) write('Kamloops') ? creep
+Kamloops
+   Exit: (8) write('Kamloops') ? creep
+   Call: (8) write(' ') ? creep
+
+   Exit: (8) write(' ') ? creep
+   Call: (8) train('Kamloops', 'Quesnel', ['Kamloops', 'Vancouver']) ? creep
+   Call: (9) ride('Kamloops', 'Quesnel') ? creep
+   Call: (10) rail('Kamloops', 'Quesnel') ? creep
+   Fail: (10) rail('Kamloops', 'Quesnel') ? creep
+   Redo: (9) ride('Kamloops', 'Quesnel') ? creep
+   Call: (10) rail('Quesnel', 'Kamloops') ? creep
+   Fail: (10) rail('Quesnel', 'Kamloops') ? creep
+   Fail: (9) ride('Kamloops', 'Quesnel') ? creep
+   Redo: (8) train('Kamloops', 'Quesnel', ['Kamloops', 'Vancouver']) ? creep
+   Call: (9) ride('Kamloops', _G2509) ? creep
+   Call: (10) rail('Kamloops', _G2509) ? creep
+   Exit: (10) rail('Kamloops', 'Jasper') ? creep
+   Exit: (9) ride('Kamloops', 'Jasper') ? creep
+   Call: (9) lists:member('Jasper', ['Kamloops', 'Vancouver']) ? creep
+   Fail: (9) lists:member('Jasper', ['Kamloops', 'Vancouver']) ? creep
+   Redo: (8) train('Kamloops', 'Quesnel', ['Kamloops', 'Vancouver']) ? creep
+   Call: (9) write('Jasper') ? creep
+Jasper
+   Exit: (9) write('Jasper') ? creep
+   Call: (9) write(' ') ? creep
+
+   Exit: (9) write(' ') ? creep
+   Call: (9) train('Jasper', 'Quesnel', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Call: (10) ride('Jasper', 'Quesnel') ? creep
+   Call: (11) rail('Jasper', 'Quesnel') ? creep
+   Fail: (11) rail('Jasper', 'Quesnel') ? creep
+   Redo: (10) ride('Jasper', 'Quesnel') ? creep
+   Call: (11) rail('Quesnel', 'Jasper') ? creep
+   Fail: (11) rail('Quesnel', 'Jasper') ? creep
+   Fail: (10) ride('Jasper', 'Quesnel') ? creep
+   Redo: (9) train('Jasper', 'Quesnel', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Call: (10) ride('Jasper', _G2512) ? creep
+   Call: (11) rail('Jasper', _G2512) ? creep
+   Exit: (11) rail('Jasper', 'Prince George') ? creep
+   Exit: (10) ride('Jasper', 'Prince George') ? creep
+   Call: (10) lists:member('Prince George', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Fail: (10) lists:member('Prince George', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Redo: (9) train('Jasper', 'Quesnel', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Call: (10) write('Prince George') ? creep
+Prince George
+   Exit: (10) write('Prince George') ? creep
+   Call: (10) write(' ') ? creep
+
+   Exit: (10) write(' ') ? creep
+   Call: (10) train('Prince George', 'Quesnel', ['Prince George', 'Jasper', 'Kamloops',
+   'Vancouver']) ? creep
+   Call: (11) ride('Prince George', 'Quesnel') ? creep
+   Call: (12) rail('Prince George', 'Quesnel') ? creep
+   Exit: (12) rail('Prince George', 'Quesnel') ? creep
+   Exit: (11) ride('Prince George', 'Quesnel') ? creep
+   Call: (11) write('Quesnel') ? creep
+Quesnel
+   Exit: (11) write('Quesnel') ? creep
+   Exit: (10) train('Prince George', 'Quesnel', ['Prince George', 'Jasper', 'Kamloops',
+   'Vancouver']) ? creep
+   Exit: (9) train('Jasper', 'Quesnel', ['Jasper', 'Kamloops', 'Vancouver']) ? creep
+   Exit: (8) train('Kamloops', 'Quesnel', ['Kamloops', 'Vancouver']) ? creep
+   Exit: (7) train('Vancouver', 'Quesnel', ['Vancouver']) ? creep
+   Exit: (6) train_ride('Vancouver', 'Quesnel') ? creep
+
+   Vancouver Kamloops Jasper Prince George Quesnel
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Jane, apps, and graphics&hellip;</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+
+<pre class="example">
+% Some of you wrote this...
+neat(X):- not(slow(X)), !.
+
+% Solution
+neat(X):- slow(X), !, fail.
+
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Why is the first predicate not valid?</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<p>Because it only specifies that the in order for X to be "neat", it is required for X to
+not be slow as a sole characteristic, and upon failure of this predicate it simply goes
+to the next definition of neat and tries to satisfies that predicate. Let's look at the
+trace of the query using this predicate definition:
+</p>
+
+
+
+<pre class="example">
+   Call: (6) likes(jane, _G663) ? creep
+   Call: (7) app(_G663) ? creep
+   Exit: (7) app(mail) ? creep
+   Call: (7) neat(mail) ? creep
+^  Call: (8) not(slow(mail)) ? creep
+   Call: (9) slow(mail) ? creep
+   Fail: (9) slow(mail) ? creep
+^  Exit: (8) not(user:slow(mail)) ? creep
+   Exit: (7) neat(mail) ? creep
+   Exit: (6) likes(jane, mail) ? creep
+X = mail 
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(calendar) ? creep
+   Call: (7) neat(calendar) ? creep
+^  Call: (8) not(slow(calendar)) ? creep
+   Call: (9) slow(calendar) ? creep
+   Exit: (9) slow(calendar) ? creep
+^  Fail: (8) not(user:slow(calendar)) ? creep
+   Redo: (7) neat(calendar) ? creep
+   Call: (8) graphics3D(calendar) ? creep
+   Fail: (8) graphics3D(calendar) ? creep
+   Redo: (7) neat(calendar) ? creep
+   Call: (8) coded(calendar, prolog) ? creep
+   Exit: (8) coded(calendar, prolog) ? creep
+   Exit: (7) neat(calendar) ? creep
+   Exit: (6) likes(jane, calendar) ? creep
+X = calendar 
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(image_viewer) ? creep
+   Call: (7) neat(image_viewer) ? creep
+^  Call: (8) not(slow(image_viewer)) ? creep
+   Call: (9) slow(image_viewer) ? creep
+   Fail: (9) slow(image_viewer) ? creep
+^  Exit: (8) not(user:slow(image_viewer)) ? creep
+   Exit: (7) neat(image_viewer) ? creep
+   Exit: (6) likes(jane, image_viewer) ? creep
+X = image_viewer 
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(browser) ? creep
+   Call: (7) neat(browser) ? creep
+^  Call: (8) not(slow(browser)) ? creep
+   Call: (9) slow(browser) ? creep
+   Fail: (9) slow(browser) ? creep
+^  Exit: (8) not(user:slow(browser)) ? creep
+   Exit: (7) neat(browser) ? creep
+   Exit: (6) likes(jane, browser) ? creep
+X = browser.
+
+</pre>
+
+
+<p>
+We can observe that calendar did satisfied the slow portion of this predicate and thus,
+not(slow( X ) ) where X is calendar failed as expected, but you need to fail explicitly
+afterwards. Since the problem states that neat is (graphics3D and/or coded(X,Prolog)) AND
+not slow.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> The solution&hellip;</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<p>We simply test if X is slow, and if it is the case stop and fail for this value of X, try
+with the next value of X if there are any left. If X is not slow, that definition of neat
+fails and thus we are force to rely on any of the other two definitions.
+</p>
+
+
+
+<pre class="example">likes(jane, X).
+   Call: (6) likes(jane, _G663) ? creep
+   Call: (7) app(_G663) ? creep
+   Exit: (7) app(mail) ? creep
+   Call: (7) neat(mail) ? creep
+   Call: (8) slow(mail) ? creep
+   Fail: (8) slow(mail) ? creep
+   Redo: (7) neat(mail) ? creep
+   Call: (8) graphics3D(mail) ? creep
+   Fail: (8) graphics3D(mail) ? creep
+   Redo: (7) neat(mail) ? creep
+   Call: (8) coded(mail, prolog) ? creep
+   Exit: (8) coded(mail, prolog) ? creep
+   Exit: (7) neat(mail) ? creep
+   Exit: (6) likes(jane, mail) ? creep
+X = mail 
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(calendar) ? creep
+   Call: (7) neat(calendar) ? creep
+   Call: (8) slow(calendar) ? creep
+   Exit: (8) slow(calendar) ? creep
+   Call: (8) fail ? creep
+   Fail: (8) fail ? creep
+   Fail: (7) neat(calendar) ? creep
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(image_viewer) ? creep
+   Call: (7) neat(image_viewer) ? creep
+   Call: (8) slow(image_viewer) ? creep
+   Fail: (8) slow(image_viewer) ? creep
+   Redo: (7) neat(image_viewer) ? creep
+   Call: (8) graphics3D(image_viewer) ? creep
+   Exit: (8) graphics3D(image_viewer) ? creep
+   Exit: (7) neat(image_viewer) ? creep
+   Exit: (6) likes(jane, image_viewer) ? creep
+X = image_viewer 
+   Redo: (7) neat(image_viewer) ? creep
+   Call: (8) coded(image_viewer, prolog) ? creep
+   Fail: (8) coded(image_viewer, prolog) ? creep
+   Fail: (7) neat(image_viewer) ? creep
+   Redo: (7) app(_G663) ? creep
+   Exit: (7) app(browser) ? creep
+   Call: (7) neat(browser) ? creep
+   Call: (8) slow(browser) ? creep
+   Fail: (8) slow(browser) ? creep
+   Redo: (7) neat(browser) ? creep
+   Call: (8) graphics3D(browser) ? creep
+   Fail: (8) graphics3D(browser) ? creep
+   Redo: (7) neat(browser) ? creep
+   Call: (8) coded(browser, prolog) ? creep
+   Fail: (8) coded(browser, prolog) ? creep
+   Fail: (7) neat(browser) ? Unknown option (h for help)
+   Fail: (7) neat(browser) ? creep
+   Fail: (6) likes(jane, _G663) ? Unknown option (h for help)
+   Fail: (6) likes(jane, _G663) ? creep
+false.
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Tree Traversal</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> The result of this query is:</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+
+
+
+<pre class="example">tree(X), traversal(X).
+5 15 12 23 20 24 28 25 
+X = t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)).
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> The result of this query is:</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+rmm return the rightmost node and in the case that the subtree has only a left node
+return the root.
+</p>
+
+
+
+<pre class="example">tree(X), rmm(X,Y,Z).
+   Call: (7) tree(_G2357) ? creep
+   Call: (8) _G2357=t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)) ? creep
+   Exit: (8) t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil))=t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)) ? creep
+   Exit: (7) tree(t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil))) ? creep
+   Call: (7) rmm(t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)), _G2360, _G2361) ? creep
+   Call: (8) rmm(t(28, t(24, nil, nil), nil), _G2525, _G2361) ? creep
+   Exit: (8) rmm(t(28, t(24, nil, nil), nil), t(24, nil, nil), 28) ? creep
+   Exit: (7) rmm(t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)), t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(24, nil, nil)), 28) ? creep
+X = t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)),
+Y = t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(24, nil, nil)),
+Z = 28 
+   Redo: (8) rmm(t(28, t(24, nil, nil), nil), _G2525, _G2361) ? creep
+   Call: (9) rmm(nil, _G2529, _G2361) ? creep
+   Fail: (9) rmm(nil, _G2529, _G2361) ? creep
+   Fail: (8) rmm(t(28, t(24, nil, nil), nil), _G2525, _G2361) ? creep
+   Fail: (7) rmm(t(25, t(20, t(12, t(5, nil, nil), t(15, nil, nil)), t(23, nil, nil)), t(28, t(24, nil, nil), nil)), _G2360, _G2361) ? creep
+false.
+
+</pre>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Game Dev</h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> design('Charlotte', D, 'Secret')</h3>
+<div class="outline-text-3" id="text-4-1">
+
+<p>This query attempts to pair a developer with Charlotte (artist) to create a game 'Secret'
+which is not already created.
+</p>
+
+
+
+<pre class="example">
+design('Charlotte', D, 'Secret').
+   Call: (6) design('Charlotte', _G2436, 'Secret') ? creep
+   Call: (7) team('Charlotte', _G2436) ? creep
+   Call: (8) artist('Charlotte') ? creep
+   Exit: (8) artist('Charlotte') ? creep
+   Call: (8) developer(_G2436) ? creep
+   Exit: (8) developer('Mia') ? creep
+   Exit: (7) team('Charlotte', 'Mia') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Mia', 'Secret') ? creep
+D = 'Mia' 
+   Redo: (8) developer(_G2436) ? creep
+   Exit: (8) developer('Sophia') ? creep
+   Exit: (7) team('Charlotte', 'Sophia') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Sophia', 'Secret') ? creep
+D = 'Sophia' 
+   Redo: (8) developer(_G2436) ? creep
+   Exit: (8) developer('Mason') ? creep
+   Exit: (7) team('Charlotte', 'Mason') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Mason', 'Secret') ? creep
+D = 'Mason' 
+   Redo: (7) team('Charlotte', _G2436) ? creep
+   Call: (8) developer('Charlotte') ? creep
+   Fail: (8) developer('Charlotte') ? creep
+   Fail: (7) team('Charlotte', _G2436) ? creep
+   Fail: (6) design('Charlotte', _G2436, 'Secret') ? creep
+false.
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Only Sophia, cut this tree!</h3>
+<div class="outline-text-3" id="text-4-2">
+
+<p>We need to insert a cut to prevent, once Sophia was selected, that no other developer is
+considered during backtracking.
+</p>
+
+</div>
+
+<div id="outline-container-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> Some students solution</h4>
+<div class="outline-text-4" id="text-4-2-1">
+
+<p>Some of you wrote:
+</p>
+
+
+<pre class="example">
+equipe(A,B):-developpeur(A),A=sophia,!,artiste(B).
+
+design('Charlotte', D, 'Secret').
+   Call: (6) design('Charlotte', _G3055, 'Secret') ? creep
+   Call: (7) team('Charlotte', _G3055) ? creep
+   Call: (8) artist('Charlotte') ? creep
+   Exit: (8) artist('Charlotte') ? creep
+   Call: (8) developer(_G3055) ? creep
+   Exit: (8) developer('Mia') ? creep
+   Call: (8) 'Mia'='Sophia' ? creep
+   Fail: (8) 'Mia'='Sophia' ? creep
+   Redo: (8) developer(_G3055) ? creep
+   Exit: (8) developer('Sophia') ? creep
+   Call: (8) 'Sophia'='Sophia' ? creep
+   Exit: (8) 'Sophia'='Sophia' ? creep
+   Exit: (7) team('Charlotte', 'Sophia') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Sophia', 'Secret') ? creep
+D = 'Sophia'.
+
+</pre>
+
+
+<p>
+The problem is, that you were required to only insert a cut&hellip; and that this restricts to
+only choose Sophia, and no other developer are considered beforehand.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> Solution</h4>
+<div class="outline-text-4" id="text-4-2-2">
+
+
+
+
+
+<pre class="example">
+developer('Sophia'):-!.
+
+design('Charlotte', D, 'Secret').
+   Call: (6) design('Charlotte', _G3055, 'Secret') ? creep
+   Call: (7) team('Charlotte', _G3055) ? creep
+   Call: (8) artist('Charlotte') ? creep
+   Exit: (8) artist('Charlotte') ? creep
+   Call: (8) developer(_G3055) ? creep
+   Exit: (8) developer('Mia') ? creep
+   Exit: (7) team('Charlotte', 'Mia') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? Unknown option (h for help)
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Mia', 'Secret') ? creep
+D = 'Mia' 
+   Redo: (8) developer(_G3055) ? creep
+   Exit: (8) developer('Sophia') ? creep
+   Exit: (7) team('Charlotte', 'Sophia') ? creep
+^  Call: (7) not(game('Secret')) ? creep
+   Call: (8) game('Secret') ? creep
+   Fail: (8) game('Secret') ? creep
+^  Exit: (7) not(user:game('Secret')) ? creep
+   Exit: (6) design('Charlotte', 'Sophia', 'Secret') ? creep
+D = 'Sophia' .
+
+</pre>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Summation, Lists, etc&hellip;</h2>
+<div class="outline-text-2" id="text-5">
+
+<p>2 possible answers:
+</p>
+<p>
+(d) 
+</p>
+
+
+
+<pre class="example">
+rSum( L, R  ) :- rSum( L, 0, R ).
+
+rSum( [], _ , []).
+
+rSum( [H|T], S, [RH|RT] ) :-  RH is S+H,
+      rSum( T, RH, RT ).
+
+</pre>
+
+
+
+<p>
+(a)
+</p>
+
+
+
+<pre class="example">
+rSumR( L, R  ) :- rSumR( L, 0, [], R ).
+
+rSumR( [], _ , R, R) :- !.
+
+rSumR( [H|T], S, L, R ) :-  RH is S+H,
+    rSumR( T, RH, [RH|L], R ).
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Order for two</h2>
+<div class="outline-text-2" id="text-6">
+
+
+
+
+
+<pre class="example">
+findall(X, orderForTwo( X, Y, 18.5), L)
+
+L = ['Salad rolls', 'Salad rolls', 'Hamburger and fries'].
+
+
+setof(X, Y^orderForTwo(X,Y,18.5),L).
+
+L = ['Hamburger and fries', 'Salad rolls'].
+
+bagof( (X,Y), orderForTwo( X,Y,18.5), L ).
+
+L = [ ('Salad rolls', 'Salad rolls'), ('Salad rolls', 'Hamburger and fries'), ('Hamburger and fries', 'Salad rolls')].
+
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Permutations</h2>
+<div class="outline-text-2" id="text-7">
+
+
+<p>
+(; true ) is used to introduce indeterminism, and prolog will wait for you to hit a key,
+which you can hit 'w' to see the unabbreviated output.
+</p>
+
+
+
+<pre class="example">setof((X,Y,Z), (color(X), color(Y), color(Z)), L) ; true.
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> SUDOKU</h2>
+<div class="outline-text-2" id="text-8">
+
+<p>app(X,L) is a predicate that verifies if X is in list L.
+napp(X,L) is a predicate that verifies if X is NOT in list L.
+</p>
+<p>
+next(I,J) is a predicate that returns the next element following I and J
+</p>
+<p>
+nth(I, L, R) is a predicate that returns the ith element in a list L.
+</p>
+<p>
+column(J, S, X) is a predicate that returns C the column ranked J in the matrix S. 
+</p>
+<p>
+count(N, X, L) is a predicate that counts the elts in a list L.
+</p>
+<p>
+square( I, J, S, M) is a predicate that returns true if M is the sub-matrix at location
+(I,J).
+</p>
+<p>
+place( X, I, J, M, S) is a predicate that placed the elt X at pos J in row I and returns
+the resulting matrix as S.
+</p></div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2015-02-26T10:39-0500</p>
+<p class="author">Author: Dany Wilson</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

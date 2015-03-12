@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>CSI-2520 - Scheme Lab and Tutorial</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="CSI-2520 - Scheme Lab and Tutorial"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2015-03-12T13:19-0400"/>
+<meta name="author" content="Dany Wilson"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">CSI-2520 - Scheme Lab and Tutorial</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 March 5th</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Tutorial</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1 What are the 3 different ways to create a list in Scheme?</a></li>
+<li><a href="#sec-1-1-2">1.1.2 What is the result of the following commands?</a></li>
+<li><a href="#sec-1-1-3">1.1.3 Using lambdas</a></li>
+<li><a href="#sec-1-1-4">1.1.4 Equality</a></li>
+<li><a href="#sec-1-1-5">1.1.5 Content address register, and content decrement register</a></li>
+<li><a href="#sec-1-1-6">1.1.6 Find the last cell of a list.</a></li>
+<li><a href="#sec-1-1-7">1.1.7 Remove repeated occurrences in a given list.</a></li>
+<li><a href="#sec-1-1-8">1.1.8 Element replication within a list.</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2 Laboratory Session</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1 Arithmetic</a></li>
+</ul></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 March 12th</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Tutorial</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1 Flatten a structure of nested lists</a></li>
+<li><a href="#sec-2-1-2">2.1.2 Integers of a range</a></li>
+<li><a href="#sec-2-1-3">2.1.3 Remove the Kth element of a list</a></li>
+<li><a href="#sec-2-1-4">2.1.4 Insert an element at the Kth position of a list.</a></li>
+<li><a href="#sec-2-1-5">2.1.5 Extract random numbers from a list</a></li>
+<li><a href="#sec-2-1-6">2.1.6 Generate a random permutation of the elements in a list</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2 Laboratory Session</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1 Sub-list</a></li>
+<li><a href="#sec-2-2-2">2.2.2 Delete every Kth element of a list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> March 5th</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Tutorial</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> What are the 3 different ways to create a list in Scheme?</h4>
+<div class="outline-text-4" id="text-1-1-1">
+
+
+
+
+<pre class="example">; first way
+'(a b c)
+
+; another way
+(cons 'x (cons 'y (cons 'z '())))
+
+; finally
+(list 'a 'b 'c)
+</pre>
+
+
+<p>
+Do not forget the quote on the second argument of (cons 'z '())!
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> What is the result of the following commands?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+
+
+
+
+
+<pre class="example">'x                    =&gt; x
+(list elmer fudd)   =&gt; error! elmer is unbound symbol
+(list 'elmer 'fudd) =&gt; (elmer fudd)
+(elmer fudd)        =&gt; error! elmer is unknown function
+'(elmer fudd)       =&gt; (elmer fudd)
+(equal? (x) (x))      =&gt; error! x is unknown function
+(equal? '(x) '(x))    =&gt; #t
+(cons 'x '(y z))      =&gt; (x y z)
+(cons 'x () )         =&gt; (x)
+(car '(1 2 3))        =&gt; 1
+(cdr (cons 1 '(2 3))) =&gt; (2 3)
+
+&gt; (cons 'a (cons 'b '(c d)))
+(a b c d)
+
+&gt; (cons 'a '(cons 'b '(c d))) ; quote before 2nd arg
+(a cons 'b '(c d))
+
+&gt; (cons a (cons 'b '(c d))) ; no quote before 1st arg
+reference to undefined identifier: a
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Using lambdas</h4>
+<div class="outline-text-4" id="text-1-1-3">
+
+
+
+
+<pre class="example">((lambda (x1 x2)
+         (* (- x1 x2) (- x1 x2)))
+ 2 -5)
+</pre>
+
+
+<p>
+Result?
+</p>
+
+
+
+<pre class="example">(define square-diff  
+        (lambda (x1 x2)
+                (* (- x1 x2) (- x1 x2))))
+</pre>
+
+
+<p>
+Result?
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> Equality</h4>
+<div class="outline-text-4" id="text-1-1-4">
+
+<p>Difference between <b>eq?</b>, <b>equal?</b> and <b>eqv?</b>?
+</p><dl>
+<dt>(eq? x y)</dt><dd>compares if x has the same address as y (or is the same object).
+</dd>
+<dt>(equal? x y)</dt><dd>compares if the representation of x is the same as the representation
+                   of y. 
+</dd>
+<dt>(eqv? x y)</dt><dd>compares the value of x to value of y (used for numerical comparisons).
+</dd>
+</dl>
+
+
+
+
+
+<pre class="example">
+(define clam '(1 2 3))
+(define octopus clam)              ; clam and octopus refer to the same list
+
+(eq? 'clam 'clam)            =&gt; #t
+(eq? clam clam)              =&gt; #t  
+(eq? clam octopus)           =&gt; #t
+(eq? clam '(1 2 3))          =&gt; #f ; (or (), in MIT Scheme)
+(eq? '(1 2 3) '(1 2 3))      =&gt; #f
+(eq? 10 10)                  =&gt; #t ; (generally, but implementation-dependent)
+(eq? 10.0 10.0)              =&gt; #f ; (generally, but implementation-dependent)
+(eqv? 10 10)                 =&gt; #t ; always
+(eqv? 10.0 10.0)             =&gt; #t ; always
+(eqv? 10.0 10)               =&gt; #f ; no conversion between types
+(equal? clam '(1 2 3))       =&gt; #t
+(equal? '(1 2 3) '(1 2 3))   =&gt; #t
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> Content address register, and content decrement register</h4>
+<div class="outline-text-4" id="text-1-1-5">
+
+<p>Given the following list, please walk-through the values using only car or cdr:
+</p>
+
+
+<pre class="example">(define x '(a (bc) d ( (ef) g) ))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(cdr x) = ((bc) d ( (ef) g ) )
+(cdr(cdr x)) = (d ( (ef) g ) )
+(cdr(cdr(cdr x))) = (( (ef) g ) )
+(car(cdr(cdr(cdr x)))) = ( (ef) g )
+(cdr(car(cdr(cdr(cdr x))))) = (g)
+(car(cdr(car(cdr(cdr(cdr x)))))) = g
+
+(cadr (cadddr x))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6"><span class="section-number-4">1.1.6</span> Find the last cell of a list.</h4>
+<div class="outline-text-4" id="text-1-1-6">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Example
+; (my-last '( a b c d ) )
+; (d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (my-last l)
+  ; if the list is empty or contains only 1 elt simply return the list
+  (if (or (null? l)
+          (null? (cdr l)))
+      l
+      ; else call (recursively) on the cdr of the list
+      (my-last (cdr l))
+      ))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7"><span class="section-number-4">1.1.7</span> Remove repeated occurrences in a given list.</h4>
+<div class="outline-text-4" id="text-1-1-7">
+
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Remove repeated consecutives entries in a list
+; If a list contains consecutive repeated elements, they are replaced
+; by a single copy of the element. The order of the elements is not changed. 
+; 
+; Example:
+; (compress '(a a a a b c c a a d e e e e))
+; (a b c a d e)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (compress list)
+  ; if the list is empty or contains only one elt simply return it
+  ; no additional compression can be done.
+  (if (or
+       (null? list)
+       (null? (cdr list)))
+      list
+      ; else compress the cdr of the list
+      (let ((compressed-cdr (compress (cdr list))))
+        ; if the first elt of the list is equal to the first elt of compressed-cdr
+        (if (equal? (car list) (car compressed-cdr))
+            ; return compressed-cdr
+            compressed-cdr
+            (cons (car list) compressed-cdr)))))
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-1-8" class="outline-4">
+<h4 id="sec-1-1-8"><span class="section-number-4">1.1.8</span> Element replication within a list.</h4>
+<div class="outline-text-4" id="text-1-1-8">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Repeat each elemeny of a list as many times as given in the last argument.
+; Example:
+; * (replicate-it '(a b c) 3)
+; (a a a b b b c c c)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (replicate-it list count)
+  ; sub-function that replicates only one elt.
+  (define (replicate-element element how-many)
+    (if (= how-many 0)
+        '()
+        (cons element
+              (replicate-element element (- how-many 1)))))
+  (if (null? list)
+      '()
+      (append (replicate-element (car list) count)
+      (replicate-it (cdr list) count))))
+
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Laboratory Session</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+</div>
+
+<div id="outline-container-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Arithmetic</h4>
+<div class="outline-text-4" id="text-1-2-1">
+
+
+<p>
+Define a function f, given two number x and y returns a list containing the following
+numbers x+y, x-y, x/y and x*y.
+</p>
+
+
+
+<pre class="example">(define (f x y) (list (+ x y) (- x y) (/ x y) (* x y) ))
+</pre>
+
+
+<p>
+Define a function g, which given lists L1 and L2 returns a new list containing the first
+2 elements of L2 followed by L1.
+</p>
+
+
+
+<pre class="example">(define (g L1 L2) (g-s L1 L2 2))
+; intermediate function which takes a supplementary parameter representing the number
+; of elts of L2 to place in front of L1
+(define (g-s L1 L2 C) 
+  ; if L2 is empty or the number of elts to copy is smaller than 0, return L1
+  (if (or (null? L2) (&lt; C 0))
+      L1
+      ; else 
+      (cons (car L2) (g-s L1 (cdr L2) (- C 1)))
+   )
+)
+</pre>
+
+
+<p>
+Define a function everyOtherSum, given a list of numbers, returns the sum of every other
+number in the list (starting with the first number).
+</p>
+
+
+
+<pre class="example">(define (everyOtherSum L1) (everyOtherSum_S L1 0))
+; intermediate function which takes a supplementary parameter representing the index
+(define (everyOtherSum_S L1 I) 
+  ; if L1 is empty return 0
+  (if (null? L1)
+      0
+      ; else 
+      (+
+        ; if the index is of pair value, then take the first element of L1
+        (if (= (modulo I 2) 0) 
+            (car L1) 
+            ; else return 0
+            0) 
+        ; call recursively with the cdr of L1 and increment index (FINALLY add everything)
+        (everyOtherSum_S (cdr L1) (+ I 1)))
+   )
+)
+</pre>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> March 12th</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Tutorial</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+</div>
+
+<div id="outline-container-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Flatten a structure of nested lists</h4>
+<div class="outline-text-4" id="text-2-1-1">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Transform a list potentially containing other lists as elements into a flat list by
+; (recursively) replacing each sub-list with the elements of the sub-list.
+; 
+; Example:
+; (my-flatten '(a (b (c d) e)))
+; =&gt; (a b c d e)
+;
+; Hint: Use the predefined functions list and append.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (my-flatten L)
+  ; if list is empty, return empty list
+  (if (null? L)
+      '()
+      ; else 
+      (append
+          ; if first element is a list
+          (if (list? (car L))
+               ; then call my-flatten on first element
+               (my-flatten (car L))
+               ; else make the first element a list containing 1 element
+               (list (car L)))
+          ; append the result to the result of the recursive call with the cdr
+          (my-flatten (cdr L)))))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Integers of a range</h4>
+<div class="outline-text-4" id="text-2-1-2">
+
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Create a list containing all the integers in order for a  given range 
+;
+; Example:
+; (range 4 9)
+; =&gt; (4 5 6 7 8 9)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (range start stop)
+  (if (= start stop)
+      (list stop)
+      (cons start
+            (range (+ start 1)
+                   stop))))
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3"><span class="section-number-4">2.1.3</span> Remove the Kth element of a list</h4>
+<div class="outline-text-4" id="text-2-1-3">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;
+; Example:
+; (remove-at '(a b c d) 2)
+; =&gt; (a c d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (remove-at L place)
+  ; if k = 1, returns cdr of L;
+  (if (= 1 place)
+      (cdr L)
+      ; k!=1, thus keep first elt and re-call funct.
+      (cons (car L)
+            (remove-at (cdr L)
+                       (- place 1)))))
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4"><span class="section-number-4">2.1.4</span> Insert an element at the Kth position of a list.</h4>
+<div class="outline-text-4" id="text-2-1-4">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; 
+; Example:
+; (insert-at 'alfa ' (a b c d) 2)
+; =&gt; (a alfa b c d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (insert-at element L place)
+  ; if k = 1, the return a list where car is the elt and cdr is L 
+  (if (= 1 place)
+      (cons element L)
+      ; else k != 1, keep the first elt and re-call with funct.
+      (cons (car L)
+            (insert-at element
+                       (cdr L)
+                       (- place 1)))))
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-5" class="outline-4">
+<h4 id="sec-2-1-5"><span class="section-number-4">2.1.5</span> Extract random numbers from a list</h4>
+<div class="outline-text-4" id="text-2-1-5">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; 
+; Example: 
+; (rnd-select '(a b c d e f g h) 3)
+; =&gt; (e d a) 
+; 
+; Hint: Use the predefined random number generator random.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (rnd-select L how-many)
+  (define (my-random n) (+ 1 (random n))) ; 1 &lt;= random number &lt;= n
+  ; if number of number to pick is 0, return an empty list
+  (if (= 0 how-many)
+      '()
+      ; else, place = random num [1..len(L)]
+      (let ((place (my-random (length L))))
+        ; create a list containing the elt at location (place -1) using list-ref
+        (cons (list-ref L (- place 1)) ; list-ref is 0 indexed
+                  ; recursive call            
+                  (rnd-select (remove-at L place)
+                          (- how-many 1))))))
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-1-6" class="outline-4">
+<h4 id="sec-2-1-6"><span class="section-number-4">2.1.6</span> Generate a random permutation of the elements in a list</h4>
+<div class="outline-text-4" id="text-2-1-6">
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Example: 
+; (rnd-permu '(a b c d e f))
+; =&gt; (b a d c e f)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (rnd-permu L)
+    (rnd-select L
+                (length L)))
+
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Laboratory Session</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+</div>
+
+<div id="outline-container-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Sub-list</h4>
+<div class="outline-text-4" id="text-2-2-1">
+
+<p>Give a function that extracts a sub-list from a list.
+</p>
+
+
+
+<pre class="example">
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; The function takes two inidices, i and k, and produces a sub-list 
+; with the elements contained between the inidices including the start 
+; element i and the last element k. Start counting at the first 
+; element with 1.
+; 
+; Example:
+; (slice '(a b c d e f g h i k) 3 7)
+; =&gt; (c d e f g)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; this function generates a sub-list of length, length; starting at the beginning of the list
+(define (sublist list length)
+  ; if length &lt;= 0 or the list is empty, return empty list
+  (if (or (&lt;= length 0) (null? list))
+      '()
+      ; else, cons a list using the first elt and call sublist with cdr of list and length-1 
+      (cons (car list) (sublist (cdr list) (- length 1)))
+  )
+)
+
+(define (slice list start end)
+  ; if start &lt;=1 or the list is empty
+  (if (or (&lt;= start 1) (null? list))
+      ; generate a sublist of length: end (starting at 1)
+      (sublist list end)
+      ; else advance the indices and re-call on the cdr of the list
+      (slice (cdr list) (- start 1) (- end 1))
+   )
+)
+
+
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Delete every Kth element of a list</h4>
+<div class="outline-text-4" id="text-2-2-2">
+
+
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;      The function takes a list and an number selecting every kth
+;      element. Start counting at 1.
+;
+; Example:
+; (drop '(a b c d e f g h i k) 3)
+; =&gt; (a b d e g h k)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (drop list kth)
+(define (drop list pos kth)
+ (if (null? list) 
+     list
+    ;else
+     (if (= (modulo pos kth) 0)
+         (drop (cdr list) (+ pos 1) kth)
+         (cons (car list) (drop (cdr list) (+ pos 1) kth)) 
+     )
+ )
+ )
+ (drop list 1 kth))
+
+</pre>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2015-03-12T13:19-0400</p>
+<p class="author">Author: Dany Wilson</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

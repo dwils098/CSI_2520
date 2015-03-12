@@ -1,0 +1,422 @@
+#+TITLE: CSI-2520 - Scheme Lab and Tutorial
+
+* March 5th
+ 
+** Tutorial
+
+*** What are the 3 different ways to create a list in Scheme?
+#+BEGIN_SRC scheme 
+; first way
+'(a b c)
+
+; another way
+(cons 'x (cons 'y (cons 'z '())))
+
+; finally
+(list 'a 'b 'c)
+#+END_SRC
+
+Do not forget the quote on the second argument of (cons 'z '())!
+
+*** What is the result of the following commands?
+
+#+BEGIN_SRC scheme
+'x                    => x
+(list elmer fudd)   => error! elmer is unbound symbol
+(list 'elmer 'fudd) => (elmer fudd)
+(elmer fudd)        => error! elmer is unknown function
+'(elmer fudd)       => (elmer fudd)
+(equal? (x) (x))      => error! x is unknown function
+(equal? '(x) '(x))    => #t
+(cons 'x '(y z))      => (x y z)
+(cons 'x () )         => (x)
+(car '(1 2 3))        => 1
+(cdr (cons 1 '(2 3))) => (2 3)
+
+> (cons 'a (cons 'b '(c d)))
+(a b c d)
+
+> (cons 'a '(cons 'b '(c d))) ; quote before 2nd arg
+(a cons 'b '(c d))
+
+> (cons a (cons 'b '(c d))) ; no quote before 1st arg
+reference to undefined identifier: a
+#+END_SRC
+
+*** Using lambdas
+#+BEGIN_SRC scheme
+((lambda (x1 x2)
+         (* (- x1 x2) (- x1 x2)))
+ 2 -5)
+#+END_SRC
+
+Result?
+
+#+BEGIN_SRC scheme
+(define square-diff  
+        (lambda (x1 x2)
+                (* (- x1 x2) (- x1 x2))))
+#+END_SRC
+
+Result?
+
+*** Equality
+Difference between *eq?*, *equal?* and *eqv?*?
+ - (eq? x y) :: compares if x has the same address as y (or is the same object).
+ - (equal? x y) :: compares if the representation of x is the same as the representation
+                   of y. 
+ - (eqv? x y) :: compares the value of x to value of y (used for numerical comparisons).
+
+#+BEGIN_SRC scheme
+
+(define clam '(1 2 3))
+(define octopus clam)              ; clam and octopus refer to the same list
+
+(eq? 'clam 'clam)            => #t
+(eq? clam clam)              => #t  
+(eq? clam octopus)           => #t
+(eq? clam '(1 2 3))          => #f ; (or (), in MIT Scheme)
+(eq? '(1 2 3) '(1 2 3))      => #f
+(eq? 10 10)                  => #t ; (generally, but implementation-dependent)
+(eq? 10.0 10.0)              => #f ; (generally, but implementation-dependent)
+(eqv? 10 10)                 => #t ; always
+(eqv? 10.0 10.0)             => #t ; always
+(eqv? 10.0 10)               => #f ; no conversion between types
+(equal? clam '(1 2 3))       => #t
+(equal? '(1 2 3) '(1 2 3))   => #t
+
+#+END_SRC
+
+*** Content address register, and content decrement register
+Given the following list, please walk-through the values using only car or cdr:
+#+BEGIN_SRC scheme
+(define x '(a (bc) d ( (ef) g) ))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(cdr x) = ((bc) d ( (ef) g ) )
+(cdr(cdr x)) = (d ( (ef) g ) )
+(cdr(cdr(cdr x))) = (( (ef) g ) )
+(car(cdr(cdr(cdr x)))) = ( (ef) g )
+(cdr(car(cdr(cdr(cdr x))))) = (g)
+(car(cdr(car(cdr(cdr(cdr x)))))) = g
+
+(cadr (cadddr x))
+#+END_SRC
+
+*** Find the last cell of a list.
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Example
+; (my-last '( a b c d ) )
+; (d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (my-last l)
+  ; if the list is empty or contains only 1 elt simply return the list
+  (if (or (null? l)
+          (null? (cdr l)))
+      l
+      ; else call (recursively) on the cdr of the list
+      (my-last (cdr l))
+      ))
+#+END_SRC
+
+*** Remove repeated occurrences in a given list.
+
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Remove repeated consecutives entries in a list
+; If a list contains consecutive repeated elements, they are replaced
+; by a single copy of the element. The order of the elements is not changed. 
+; 
+; Example:
+; (compress '(a a a a b c c a a d e e e e))
+; (a b c a d e)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (compress list)
+  ; if the list is empty or contains only one elt simply return it
+  ; no additional compression can be done.
+  (if (or
+       (null? list)
+       (null? (cdr list)))
+      list
+      ; else compress the cdr of the list
+      (let ((compressed-cdr (compress (cdr list))))
+        ; if the first elt of the list is equal to the first elt of compressed-cdr
+        (if (equal? (car list) (car compressed-cdr))
+            ; return compressed-cdr
+            compressed-cdr
+            (cons (car list) compressed-cdr)))))
+
+#+END_SRC 
+
+*** Element replication within a list.
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Repeat each elemeny of a list as many times as given in the last argument.
+; Example:
+; * (replicate-it '(a b c) 3)
+; (a a a b b b c c c)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (replicate-it list count)
+  ; sub-function that replicates only one elt.
+  (define (replicate-element element how-many)
+    (if (= how-many 0)
+        '()
+        (cons element
+              (replicate-element element (- how-many 1)))))
+  (if (null? list)
+      '()
+      (append (replicate-element (car list) count)
+      (replicate-it (cdr list) count))))
+
+#+END_SRC
+
+** Laboratory Session
+*** Arithmetic 
+
+Define a function f, given two number x and y returns a list containing the following
+numbers x+y, x-y, x/y and x*y.
+
+#+BEGIN_SRC scheme
+(define (f x y) (list (+ x y) (- x y) (/ x y) (* x y) ))
+#+END_SRC
+
+Define a function g, which given lists L1 and L2 returns a new list containing the first
+2 elements of L2 followed by L1.
+
+#+BEGIN_SRC scheme
+(define (g L1 L2) (g-s L1 L2 2))
+; intermediate function which takes a supplementary parameter representing the number
+; of elts of L2 to place in front of L1
+(define (g-s L1 L2 C) 
+  ; if L2 is empty or the number of elts to copy is smaller than 0, return L1
+  (if (or (null? L2) (< C 0))
+      L1
+      ; else 
+      (cons (car L2) (g-s L1 (cdr L2) (- C 1)))
+   )
+)
+#+END_SRC
+
+Define a function everyOtherSum, given a list of numbers, returns the sum of every other
+number in the list (starting with the first number).
+
+#+BEGIN_SRC scheme
+(define (everyOtherSum L1) (everyOtherSum_S L1 0))
+; intermediate function which takes a supplementary parameter representing the index
+(define (everyOtherSum_S L1 I) 
+  ; if L1 is empty return 0
+  (if (null? L1)
+      0
+      ; else 
+      (+
+        ; if the index is of pair value, then take the first element of L1
+        (if (= (modulo I 2) 0) 
+            (car L1) 
+            ; else return 0
+            0) 
+        ; call recursively with the cdr of L1 and increment index (FINALLY add everything)
+        (everyOtherSum_S (cdr L1) (+ I 1)))
+   )
+)
+#+END_SRC 
+
+* March 12th
+** Tutorial
+*** Flatten a structure of nested lists
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Transform a list potentially containing other lists as elements into a flat list by
+; (recursively) replacing each sub-list with the elements of the sub-list.
+; 
+; Example:
+; (my-flatten '(a (b (c d) e)))
+; => (a b c d e)
+;
+; Hint: Use the predefined functions list and append.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (my-flatten L)
+  ; if list is empty, return empty list
+  (if (null? L)
+      '()
+      ; else 
+      (append
+          ; if first element is a list
+          (if (list? (car L))
+               ; then call my-flatten on first element
+               (my-flatten (car L))
+               ; else make the first element a list containing 1 element
+               (list (car L)))
+          ; append the result to the result of the recursive call with the cdr
+          (my-flatten (cdr L)))))
+#+END_SRC
+
+*** Integers of a range
+
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Create a list containing all the integers in order for a  given range 
+;
+; Example:
+; (range 4 9)
+; => (4 5 6 7 8 9)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (range start stop)
+  (if (= start stop)
+      (list stop)
+      (cons start
+            (range (+ start 1)
+                   stop))))
+#+END_SRC
+
+*** Remove the Kth element of a list
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;
+; Example:
+; (remove-at '(a b c d) 2)
+; => (a c d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (remove-at L place)
+  ; if k = 1, returns cdr of L;
+  (if (= 1 place)
+      (cdr L)
+      ; k!=1, thus keep first elt and re-call funct.
+      (cons (car L)
+            (remove-at (cdr L)
+                       (- place 1)))))
+
+#+END_SRC
+
+*** Insert an element at the Kth position of a list.
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; 
+; Example:
+; (insert-at 'alfa ' (a b c d) 2)
+; => (a alfa b c d)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (insert-at element L place)
+  ; if k = 1, the return a list where car is the elt and cdr is L 
+  (if (= 1 place)
+      (cons element L)
+      ; else k != 1, keep the first elt and re-call with funct.
+      (cons (car L)
+            (insert-at element
+                       (cdr L)
+                       (- place 1)))))
+
+#+END_SRC
+
+*** Extract random numbers from a list
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; 
+; Example: 
+; (rnd-select '(a b c d e f g h) 3)
+; => (e d a) 
+; 
+; Hint: Use the predefined random number generator random.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+
+(define (rnd-select L how-many)
+  (define (my-random n) (+ 1 (random n))) ; 1 <= random number <= n
+  ; if number of number to pick is 0, return an empty list
+  (if (= 0 how-many)
+      '()
+      ; else, place = random num [1..len(L)]
+      (let ((place (my-random (length L))))
+        ; create a list containing the elt at location (place -1) using list-ref
+        (cons (list-ref L (- place 1)) ; list-ref is 0 indexed
+                  ; recursive call            
+                  (rnd-select (remove-at L place)
+                          (- how-many 1))))))
+
+#+END_SRC
+
+*** Generate a random permutation of the elements in a list
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Example: 
+; (rnd-permu '(a b c d e f))
+; => (b a d c e f)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (rnd-permu L)
+    (rnd-select L
+                (length L)))
+
+#+END_SRC
+
+** Laboratory Session
+*** Sub-list
+Give a function that extracts a sub-list from a list.
+
+#+BEGIN_SRC scheme
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+; The function takes two inidices, i and k, and produces a sub-list 
+; with the elements contained between the inidices including the start 
+; element i and the last element k. Start counting at the first 
+; element with 1.
+; 
+; Example:
+; (slice '(a b c d e f g h i k) 3 7)
+; => (c d e f g)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; this function generates a sub-list of length, length; starting at the beginning of the list
+(define (sublist list length)
+  ; if length <= 0 or the list is empty, return empty list
+  (if (or (<= length 0) (null? list))
+      '()
+      ; else, cons a list using the first elt and call sublist with cdr of list and length-1 
+      (cons (car list) (sublist (cdr list) (- length 1)))
+  )
+)
+
+(define (slice list start end)
+  ; if start <=1 or the list is empty
+  (if (or (<= start 1) (null? list))
+      ; generate a sublist of length: end (starting at 1)
+      (sublist list end)
+      ; else advance the indices and re-call on the cdr of the list
+      (slice (cdr list) (- start 1) (- end 1))
+   )
+)
+
+
+#+END_SRC
+
+*** Delete every Kth element of a list
+
+#+BEGIN_SRC scheme
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;      The function takes a list and an number selecting every kth
+;      element. Start counting at 1.
+;
+; Example:
+; (drop '(a b c d e f g h i k) 3)
+; => (a b d e g h k)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (drop list kth)
+(define (drop list pos kth)
+ (if (null? list) 
+     list
+    ;else
+     (if (= (modulo pos kth) 0)
+         (drop (cdr list) (+ pos 1) kth)
+         (cons (car list) (drop (cdr list) (+ pos 1) kth)) 
+     )
+ )
+ )
+ (drop list 1 kth))
+
+#+END_SRC

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>CSI-2520 &ndash; Tut and Lab 8</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="CSI-2520 &ndash; Tut and Lab 8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2015-03-19T14:17-0400"/>
+<meta name="author" content="Dany Wilson"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">CSI-2520 &ndash; Tut and Lab 8</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Tutorial</a>
+<ul>
+<li><a href="#sec-1-1">1.1 Problems</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 Lab</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Fibonacci</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Tutorial</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Problems</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+Given a list, compress it using 'run-length encoding' technique. This technique consists
+of representing a sequence of consecutive identical elements by a pair of values: (N V),
+where N is the number of consecutive occurrences and V is the value that is repeated.  
+</p>
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Exemple:
+; * (encode '((a a a a) (b) (c c) (a a) (d) (e e e e)))
+; ((4 a) (1 b) (2 c) (2 a) (1 d)(4 e))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (encode liste)
+  (define (encode-helper packed-list)
+    ; if the list is null simply return it.
+    (if (null? packed-list)
+        ‘()
+        ; else construct a list containing the N first followed by the V of the sublist
+        (cons (list (length (car packed-list))
+                    (caar packed-list))
+              (encode-helper (cdr packed-list)))))
+  (encode-helper liste))
+
+;(encode '((a a a a) (b) (c c) (a a) (d) (e e e e)))
+
+</pre>
+
+
+
+<p>
+Using the result from the previous function, make the elements that are not duplicated
+simply the element rather than (1 elt).
+</p>
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Exemple:
+; *(encode-modified ‘((a a a a) (b) (c c) (a a) (d) (e e e e)))  
+; ((4 a) b (2 c) (2 a) d (4 e))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (encode-modified liste)
+  (define (simplify encoded-list)
+     ;if list is null  return empty list
+     (if (null? encoded-list)
+        '()
+        ; else if N = 1, then construct a list with the second elt of the first sub-list
+        (cons (if (= 1 (caar encoded-list))
+                  (cadar encoded-list)
+                  ; else do nothing and return the sublist (N V) 
+                  (car encoded-list))
+              ; call recursively with cdr of list
+              (simplify (cdr encoded-list)))))
+
+  (simplify (encode liste)))
+
+;(encode-modified ‘((a a a a) (b) (c c) (a a) (d) (e e e e)))
+</pre>
+
+
+
+<p>
+Using the previous result re-construct the original list.
+</p>
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Example: 
+; (decode-rl (encode-modified '((a a a a) (b) (c c) (a a) (d) (e e e e))))
+; 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (decode-rl encoded-list)
+  ; intermediate function that takes an elt and a count (V N)
+  (define (expand element count)
+
+    ; if count is 0 return empty list 
+    (if (= count 0)
+        ‘()
+
+        ; else construct a list from the elt and call recursively + decr. count 
+        (cons element
+              (expand element (- count 1)))))
+
+  ; if encoded-list is null return empty list 
+  (cond ((null? encoded-list) ‘())
+        ; if first sublist is not a list 
+        ((not (list? (car encoded-list)))
+         ; make a list out of it and append it to the result of the recursive call 
+         (append (list (car encoded-list))
+                 (decode-rl (cdr encoded-list))))
+        ; else expand the pair (N V) and append it to the result of the  recursive call 
+        (else (append (expand (cadar encoded-list)
+                              (caar encoded-list))
+                      (decode-rl (cdr encoded-list))))))
+
+;(decode-rl (encode-modified ‘(a a a a b c c a a d e e e e)))
+
+</pre>
+
+
+
+<p>
+Direct implementation of run-length encoding, given a simple list (not list of lists)
+return its encoded value.
+</p>
+
+
+
+<pre class="example">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; Example:
+; * (encode-direct ‘(a a a a b c c a a d e e e e))
+; ((4 a) b (2 c) (2 a) d (4 e))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define (encode-direct list-to-encode)
+  ; intermediate function that takes 
+  (define (simplify liste)
+    (if (null? liste)
+        ‘()
+        ; else cons a list if N = 1 then use V, else use (N V); with the result of the recursive call
+        (cons (if (= 1 (caar liste))
+                  (cadar liste)
+                  (car liste))
+              (simplify (cdr liste)))))
+
+  (define (encode-direct-helper liste)
+     ;trivial case
+     (if (null? liste)
+        ‘()
+        ; else define encoded-cdr as the result of the recursive call with the cdr of the list
+        (let ((encoded-cdr (encode-direct-helper (cdr liste))))
+          ; verify if encoded-cdr is empty, if so create a list of 1 elt 
+          (cond ((null? encoded-cdr) (list (list 1
+                                                 (car liste))))
+                ; verify if the following elt is repeated if so increment N
+                ((equal? (car liste)
+                         (cadar encoded-cdr))
+                 ; increment N and add it to the encoded-cdr
+                 (cons (list (+ 1 (caar encoded-cdr))
+                             (car liste))
+                       (cdr encoded-cdr)))
+                ; else create a liste containing 1 element and add it to the encoded-cdr
+                (else (cons (list 1
+                                  (car liste))
+                            encoded-cdr))))))
+  (simplify (encode-direct-helper list-to-encode)))
+
+;(encode-direct ‘(a a a a b c c a a d e e e e))
+
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Lab</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Fibonacci</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+Which implementation is the most efficient in terms of recursion&hellip; (Tail-recursion)
+</p>
+
+
+
+<pre class="example">
+; Fibonacci Option 1
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define fibonacci
+  (lambda (n)
+    (if (= n 0)
+        0
+        ; initialize i=n a1= 1 a2=0
+        (let fib ((i n) (a1 1) (a2 0))
+          (display "fib")
+          (display (list i a1 a2))
+          (newline)
+          ; if i = 1, return 1 else call recursively
+          (if (= i 1)
+              a1
+              (fib (- i 1) (+ a1 a2) a1))))
+  )
+)
+
+
+
+; RESULT
+&gt; (fibonacci 5)
+fib(5 1 0)
+fib(4 1 1)
+fib(3 2 1)
+fib(2 3 2)
+fib(1 5 3)
+5
+
+; Fibonacci Option 2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define fibonacci2
+  (lambda (n)
+    (let fib ((i n))
+          (display "fib")
+          (display (list i))
+          (newline)
+      (cond
+        ((= i 0) 0)
+        ((= i 1) 1)
+        (else (+ (fib (- i 1)) (fib (- i 2)))))))) 
+
+;RESULT 
+&gt; (fibonacci2 5)
+fib(5)
+fib(4)
+fib(3)
+fib(2)
+fib(1)
+fib(0)
+fib(1)
+fib(2)
+fib(1)
+fib(0)
+fib(3)
+fib(2)
+fib(1)
+fib(0)
+fib(1)
+5
+
+</pre>
+
+
+
+<p>
+Exercise 2: Insertion Sort on a Vector
+</p>
+<p>
+Implement insertion sort for a vector. 
+(See Wikipedia if you need a reminder how insertion sort works.)
+Implement the function with the comparator as an additional argument.
+</p>
+
+
+
+<pre class="example">
+(define insertsort
+  (lambda (v oper)
+    (let ((n (vector-length v)))
+        (do ((i 0 (+ i 1)) 
+             (ls '() (insert-element ls (vector-ref v i) oper)))
+            ((= i n) (list-&gt;vector ls))
+         )
+    )
+  )
+)
+
+(define (insert-element L element oper)
+  (if (null? L)
+      (list element)
+      (if (oper element (car L))
+          (cons element L)
+          (cons (car L) (insert-element (cdr L) element oper))
+      )
+  )
+)
+
+
+
+</pre>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2015-03-19T14:17-0400</p>
+<p class="author">Author: Dany Wilson</p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
